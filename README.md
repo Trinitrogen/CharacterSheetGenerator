@@ -1,2 +1,7 @@
 # CharacterSheetGenerator
-Generates PNG of a DND character Sheet
+Generates a PDF of a Dungeons and Dragons character using the form fillable Character Sheet as in put. This is based off the article here: https://bostata.com/post/how_to_populate_fillable_pdfs_with_python/
+
+Current Bugs:
+Dex Modifier doesn't get filled
+Unable to toggle Check Boxes
+
