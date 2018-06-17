@@ -27,9 +27,19 @@ def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
 
 
 data_dict = {
-   'CharacterName': 'Gillian Moser',
-   'STR': '17',
-   'STRmod': '+1'
+    'CharacterName': 'Gillian Moser',
+    'STR': '17',
+    'STRmod': '+1',
+    'DEX': '18',
+    'DEXmod': '+1',
+    'CON': '15',
+    'CONmod': '+1',
+    'INT': '10',
+    'INTmod': '+1',
+    'WIS': '9',
+    'WISmod': '+1',
+    'CHA': '8',
+    'CHamod': '+1'
 }
 
 if __name__ == '__main__':
