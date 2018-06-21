@@ -105,31 +105,5 @@ data_dict = {
     'Features and Traits': 'Dark Vision, Fey Ansestery',
 }
 
-'''
-    'CharacterName': 'Gillian Moser',
-    'ClassLevel': 'Rogue 1',
-    'Race ': 'Half-Elf',
-    'Alignment': 'Chaotic Neutral',
-    'AC': '14',
-    'Initiative': '3',
-    'Speed': '30',
-    'HPMax': '7',
-    'HDTotal': '1',
-    'HD': '1D6',
-    'XP': '90',
-    'STR': '17',
-    'STRmod': '+1',
-    'DEX': '18',
-    'DEXmod ': '+1',
-    'CON': '15',
-    'CONmod': '+1',
-    'INT': '10',
-    'INTmod': '+1',
-    'WIS': '9',
-    'WISmod': '+1',
-    'CHA': '8',
-    'CHamod': '+1'
-'''
-
 if __name__ == '__main__':
     write_fillable_pdf(CharacterSheetPath, OutputPath, data_dict)
