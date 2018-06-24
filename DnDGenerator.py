@@ -1,11 +1,4 @@
-input_html = open('input.html')
-html = input_html.read()
-output = open('output.html', 'w')
-
-#    'placeholder=\"charname\"': 'placeholder=\"Trinitrogen\"',
-
-
-data_dict = {
+stat_dict = {
     'charname': 'Trinitrogen',
     'classlevel': 'Rogue 1',
     'Background': 'Criminal',
@@ -62,20 +55,26 @@ data_dict = {
     'SleightOfHand': '5',
     'Stealth': '7',
     'Survival': '0',
-    'Wpn Name': 'Short Swd',
-    'Wpn1 AtkBonus': '5',
-    'Wpn1 Damage': '1d6+3',
+    'WeaponName1': 'Short Swd',
+    'WeaponBonus1': '5',
+    'WeaponDamage1': '1d6+3',
+    'WeaponName2': 'Dagger',
+    'WeaponBonus2': '5',
+    'WeaponDamage2': '1d4+3',
+    'WeaponName3': ' ',
+    'WeaponBonus3': ' ',
+    'WeaponDamage3': ' ',
     'Wpn Name 2': 'Dagger',
     'Wpn2 AtkBonus ': '5',
     'Wpn Name 3': ' ',
     'Wpn3 AtkBonus  ': ' ',
-    'Wpn2 Damage ': '1d4+3',
+    'Wpn2 Damage ': ' ',
     'CurrentHP': ' ',
     'HPTemp': ' ',
     'Wpn3 Damage ': ' ',
     'AttacksSpellcasting': ' ',
     'CP': ' ',
-    'ProficienciesLang': 'Common, Elvish, TBD. Light Amor, Theifs Tools, Playing Cards',
+    'Proficiencies': 'Common, Elvish, TBD. Light Amour, Thiefs Tools, Playing Cards',
     'SP': ' ',
     'EP': ' ',
     'GP': ' ',
@@ -84,14 +83,58 @@ data_dict = {
     'Features and Traits': 'Dark Vision, Fey Ansestery',
 }
 
-for key, value in data_dict.items():
-    search_str = "placeholder=\"" + str(key) + "\""
-    replace_str = "placeholder=\"" + str(value) + "\""
-    if html.find(search_str) != -1:
-        print("Replacing " + key + " with value " + str(value))
-        html = html.replace(search_str,replace_str)
-    else:
-        print("False")
 
-output.write(html)
-output.close()
+check_dict = {
+    'StrengthSaveCheck': '0',
+    'DexteritySaveCheck': '1',
+    'ConstitutionSaveCheck': '0',
+    'WisdomSaveCheck': '0',
+    'IntelligenceSaveCheck': '1',
+    'CharismaSaveCheck': '0',
+    'AcrobaticsCheck': '1',
+    'AnimalCheck': '0',
+    'ArcanaCheck': '0',
+    'AthleticsCheck': '0',
+    'DeceptionCheck': '1',
+    'HistoryCheck': '0',
+    'InsightCheck': '0',
+    'IntimidationCheck': '0',
+    'InvestigationCheck': '0',
+    'MedicineCheck': '0',
+    'NatureCheck': '0',
+    'PerceptionCheck': '1',
+    'PerformanceCheck': '0',
+    'PersuasionCheck': '1',
+    'ReligionCheck': '0',
+    'SleightOfHandCheck': '1',
+    'StealthCheck': '1',
+    'SurvivalCheck': '0',
+}
+
+
+def InputStats(html):
+    for key, value in stat_dict.items():
+        search_str = "placeholder=\"" + str(key) + "\""
+        replace_str = "placeholder=\"" + str(value) + "\""
+        html = html.replace(search_str, replace_str)
+    return html
+
+
+def CheckBoxes(html):
+    for key, value in check_dict.items():
+        search_str = "placeholder=\"" + str(key) + "\""
+        replace_str = "checked=\"checked\""
+        if value == '1':
+            print('Value of ' + key + ' is ' + str(value))
+            html = html.replace(search_str, replace_str)
+    return html
+
+
+if __name__ == '__main__':
+    input = open('input.html')
+    input_html = input.read()
+    output = open('output.html', 'w')
+    input_html = InputStats(input_html)
+    input_html = CheckBoxes(input_html)
+    output.write(input_html)
+    output.close()

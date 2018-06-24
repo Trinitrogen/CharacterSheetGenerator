@@ -74,7 +74,7 @@ form.charsheet ::-ms-input-placeholder {
   color: #bbb;
 }
 form.charsheet ::placeholder {
-  color: #bbb;
+  color: black;
 }
 form.charsheet label {
   text-transform: uppercase;
@@ -429,7 +429,7 @@ form.charsheet main section.combat > div.hitdice > div > div.total {
 }
 form.charsheet main section.combat > div.hitdice > div > div.total label {
   font-size: 10px;
-  color: #bbb;
+  color: black;
   margin: 0.25em;
   text-transform: none;
 }
@@ -522,7 +522,7 @@ form.charsheet main section.attacksandspellcasting > div > table {
 }
 form.charsheet main section.attacksandspellcasting > div > table th {
   font-size: 10px;
-  color: #ddd;
+  color: black;
 }
 form.charsheet main section.attacksandspellcasting > div > table input {
   width: calc(100% - 4px);

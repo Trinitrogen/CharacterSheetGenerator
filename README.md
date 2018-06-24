@@ -3,7 +3,4 @@ Generates HTML of a Dungeons and Dragons character using the form fillable Chara
 
 https://bostata.com/post/how_to_populate_fillable_pdfs_with_python/
 
-Current Bugs:
-
-Unable to toggle Check Boxes
 
