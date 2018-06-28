@@ -277,9 +277,6 @@ form.charsheet main > section section.attributes div.attr-applications div.list-
   order: 2;
 }
 form.charsheet main > section section.attributes div.attr-applications div.list-section ul li input[type="checkbox"] {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
   width: 10px;
   height: 10px;
   border: 1px solid black;
@@ -492,9 +489,6 @@ form.charsheet main section.combat > div.deathsaves > div div.bubbles {
   margin-left: 5px;
 }
 form.charsheet main section.combat > div.deathsaves > div div.bubbles input[type="checkbox"] {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
   width: 10px;
   height: 10px;
   border: 1px solid black;
