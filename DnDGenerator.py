@@ -1,5 +1,5 @@
 stat_dict = {
-    'charname': 'Trinitrogen',
+    'charname': 'Gillian Moser',
     'classlevel': 'Rogue 1',
     'Background': 'Criminal',
     'PlayerName': ' ',
@@ -125,7 +125,6 @@ def CheckBoxes(html):
         search_str = "placeholder=\"" + str(key) + "\""
         replace_str = "checked=\"checked\""
         if value == '1':
-            print('Value of ' + key + ' is ' + str(value))
             html = html.replace(search_str, replace_str)
     return html
 
