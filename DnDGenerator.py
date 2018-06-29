@@ -111,6 +111,13 @@ check_dict = {
     'SurvivalCheck': '0',
 }
 
+def GenerateHTML():
+    input = open('input.html')
+    input_html = input.read()
+    input_html = InputStats(input_html)
+    input_html = CheckBoxes(input_html)
+    return input_html
+
 
 def InputStats(html):
     for key, value in stat_dict.items():
@@ -130,10 +137,7 @@ def CheckBoxes(html):
 
 
 if __name__ == '__main__':
-    input = open('input.html')
-    input_html = input.read()
     output = open('output.html', 'w')
-    input_html = InputStats(input_html)
-    input_html = CheckBoxes(input_html)
-    output.write(input_html)
+
+    output.write(GenerateHTML())
     output.close()
