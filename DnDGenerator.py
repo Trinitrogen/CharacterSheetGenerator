@@ -2,74 +2,75 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 stat_dict = {
-    'charname': [1, 1],
-    'classlevel': [1, 2],
-    'Background': [1, 7],
-    'PlayerName': [1, 8],
-    'race': [3, 2],
-    'alignment': [3, 7],
-    'experiencepoints': [3, 8],
-    'inspiration': [6, 6],
-    'proficiencybonus': [7, 6],
-    'Strengthscore': [10, 1],
-    'Strengthmod': [11, 1],
-    'Dexterityscore': [13, 1],
-    'Dexteritymod': [14, 1],
-    'Constitutionscore': [16, 1],
-    'Constitutionmod': [16, 1],
-    'Wisdomscore': [19, 1],
-    'Wisdommod': [20, 1],
-    'Intelligencescore': [22, 1],
-    'Intelligencemod': [23, 1],
-    'Charismascore': [25, 1],
-    'Charismamod': [26, 1],
-    'Passive': [30, 1],
-    'StrengthSave': [9, 6],
-    'DexteritySave': [10, 6],
-    'ConstitutionSave': [11, 6],
-    'WisdomSave': [12, 6],
-    'IntelligenceSave': [13, 6],
-    'CharismaSave': [14, 6],
-    'AC': [7, 10],
-    'Initiative': [7, 11],
-    'Speed': [7, 12],
-    'MaxHP': [10, 10],
-    'TotalHD': [14, 10],
-    'Acrobatics': [17, 6],
-    'Animal': [18, 6],
-    'Arcana': [19, 6],
-    'Athletics': [20, 6],
-    'Deception': [21, 6],
-    'History': [22, 6],
-    'Insight': [23, 6],
-    'Intimidation': [24, 6],
-    'Investigation': [25, 6],
-    'Medicine': [26, 6],
-    'Nature': [27, 6],
-    'Perception': [28, 6],
-    'Performance': [29, 6],
-    'Persuasion': [30, 6],
-    'Religion': [31, 6],
-    'SleightOfHand': [32, 6],
-    'Stealth': [33, 6],
-    'Survival': [34, 6],
-    'WeaponName1': [18, 10],
-    'WeaponBonus1': [18, 11],
-    'WeaponDamage1': [18, 12],
-    'WeaponName2': [19, 10],
-    'WeaponBonus2': [19, 11],
-    'WeaponDamage2': [19, 12],
-    'WeaponName3': [20, 10],
-    'WeaponBonus3': [20, 11],
-    'WeaponDamage3': [20, 12],
-    'CurrentHP': [10, 10],
-    'HPTemp': [12,10],
-    'CP': [26, 10],
-    'SP': [27, 10],
-    'EP': [28, 10],
-    'GP': [29, 10],
-    'PP': [30, 10]
-}
+    'charname': [0, 0],
+    'classlevel': [1, 0],
+    'Background': [6, 0],
+    'PlayerName': [7, 0],
+    'race': [1, 2],
+    'alignment': [6, 2],
+    'experiencepoints': [7, 2],
+    'inspiration': [5, 5],
+    'proficiencybonus': [5, 6],
+    'Strengthscore': [0, 9],
+    'Strengthmod': [0, 10],
+    'Dexterityscore': [0, 12],
+    'Dexteritymod': [0, 13],
+    'Constitutionscore': [0, 15],
+    'Constitutionmod': [0, 15],
+    'Wisdomscore': [0, 18],
+    'Wisdommod': [0, 19],
+    'Intelligencescore': [0, 21],
+    'Intelligencemod': [0, 22],
+    'Charismascore': [0, 24],
+    'Charismamod': [0, 25],
+    'Passive': [0, 29],
+    'StrengthSave': [5, 8],
+    'DexteritySave': [5, 9],
+    'ConstitutionSave': [5, 10],
+    'WisdomSave': [5, 11],
+    'IntelligenceSave': [5, 12],
+    'CharismaSave': [5, 13],
+    'AC': [9, 6],
+    'Initiative': [10, 6],
+    'Speed': [11, 6],
+    'MaxHP': [9, 9],
+    'TotalHD': [9, 13],
+    'Acrobatics': [5, 16],
+    'Animal': [5, 17],
+    'Arcana': [5, 18],
+    'Athletics': [5, 19],
+    'Deception': [5, 20],
+    'History': [5, 21],
+    'Insight': [5, 22],
+    'Intimidation': [5, 23],
+    'Investigation': [5, 24],
+    'Medicine': [5, 25],
+    'Nature': [5, 26],
+    'Perception': [5, 27],
+    'Performance': [5, 28],
+    'Persuasion': [5, 29],
+    'Religion': [5, 30],
+    'SleightOfHand': [5, 31],
+    'Stealth': [5, 32],
+    'Survival': [5, 33],
+    'WeaponName1': [9, 17],
+    'WeaponBonus1': [10, 17],
+    'WeaponDamage1': [11, 17],
+    'WeaponName2': [9, 18],
+    'WeaponBonus2': [10, 18],
+    'WeaponDamage2': [11, 18],
+    'WeaponName3': [9, 19],
+    'WeaponBonus3': [10, 19],
+    'WeaponDamage3': [11, 19],
+    'CurrentHP': [9, 9],
+    'HPTemp': [9, 11],
+    'CP': [9, 25],
+    'SP': [9, 26],
+    'EP': [9, 27],
+    'GP': [9, 28],
+    'PP': [9, 29]
+    }
+
 '''
 UNCOMMENT THIS IF NOT USING GOOGLE SHEETS
 stat_dict = {
@@ -188,22 +189,23 @@ check_dict = {
 def GenerateHTML():
     input = open('input.html')
     input_html = input.read()
-    input_html = InputStats(input_html)
-    #input_html = CheckBoxes(input_html)
-    return input_html
-
-
-def InputStats(html):
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
     client = gspread.authorize(creds)
     sheet = client.open("Character Sheet").sheet1
+    sheet_list = sheet.get_all_values()
+    input_html = InputStats(input_html, sheet_list)
+    #input_html = CheckBoxes(input_html)
+    return input_html
+
+
+def InputStats(html, sheet_list):
     for key, value in stat_dict.items():
         search_str = "placeholder=\"" + str(key) + "\""
         y_coord = stat_dict.get(key,0)[0]
         x_coord = stat_dict.get(key,0)[1]
-        replace_str = "placeholder=\"" + sheet.cell(y_coord,x_coord).value + "\""
+        replace_str = "placeholder=\"" + sheet_list[x_coord][y_coord] + "\""
         html = html.replace(search_str, replace_str)
     return html
 
