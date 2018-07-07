@@ -186,7 +186,9 @@ check_dict = {
     'SurvivalCheck': '0',
 }
 
+
 def GenerateHTML():
+    '''Entry function in which all functions are called to build output html'''
     input = open('input.html')
     input_html = input.read()
     scope = ['https://spreadsheets.google.com/feeds',
@@ -196,17 +198,32 @@ def GenerateHTML():
     sheet = client.open("Character Sheet").sheet1
     sheet_list = sheet.get_all_values()
     input_html = InputStats(input_html, sheet_list)
+    input_html = InputProficiencies(input_html, sheet_list)
     #input_html = CheckBoxes(input_html)
     return input_html
 
 
 def InputStats(html, sheet_list):
+    '''Pulls single cell data from Google Sheet and inputs into output html'''
     for key, value in stat_dict.items():
         search_str = "placeholder=\"" + str(key) + "\""
-        y_coord = stat_dict.get(key,0)[0]
-        x_coord = stat_dict.get(key,0)[1]
-        replace_str = "placeholder=\"" + sheet_list[x_coord][y_coord] + "\""
+        x_coord = stat_dict.get(key, 0)[0]
+        y_coord = stat_dict.get(key, 0)[1]
+        replace_str = "placeholder=\"" + sheet_list[y_coord][x_coord] + "\""
         html = html.replace(search_str, replace_str)
+    return html
+
+
+def InputProficiencies(html, sheets_list):
+    '''Pulls the range in the designated Proficiencies area of sheet'''
+    replace_str = "placeholder=\""
+    for i in range(31, 41):
+        for j in range(2):
+            if sheets_list[i][j] is not "":
+                replace_str = replace_str + sheets_list[i][j] + ", "
+    replace_str = replace_str[:-2]
+    replace_str = replace_str + "\""
+    html = html.replace("placeholder=\"Proficiencies\"", replace_str)
     return html
 
 
