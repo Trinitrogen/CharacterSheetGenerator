@@ -1,75 +1,84 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+
 stat_dict = {
     'charname': [0, 0],
-    'classlevel': [1, 0],
-    'Background': [6, 0],
-    'PlayerName': [7, 0],
-    'race': [1, 2],
-    'alignment': [6, 2],
-    'experiencepoints': [7, 2],
-    'inspiration': [5, 5],
-    'proficiencybonus': [5, 6],
-    'Strengthscore': [0, 9],
-    'Strengthmod': [0, 10],
-    'Dexterityscore': [0, 12],
-    'Dexteritymod': [0, 13],
-    'Constitutionscore': [0, 15],
-    'Constitutionmod': [0, 15],
-    'Wisdomscore': [0, 18],
-    'Wisdommod': [0, 19],
-    'Intelligencescore': [0, 21],
-    'Intelligencemod': [0, 22],
-    'Charismascore': [0, 24],
-    'Charismamod': [0, 25],
-    'Passive': [0, 29],
-    'StrengthSave': [5, 8],
-    'DexteritySave': [5, 9],
-    'ConstitutionSave': [5, 10],
-    'WisdomSave': [5, 11],
-    'IntelligenceSave': [5, 12],
-    'CharismaSave': [5, 13],
-    'AC': [9, 6],
-    'Initiative': [10, 6],
-    'Speed': [11, 6],
-    'MaxHP': [9, 9],
-    'TotalHD': [9, 13],
-    'Acrobatics': [5, 16],
-    'Animal': [5, 17],
-    'Arcana': [5, 18],
-    'Athletics': [5, 19],
-    'Deception': [5, 20],
-    'History': [5, 21],
-    'Insight': [5, 22],
-    'Intimidation': [5, 23],
-    'Investigation': [5, 24],
-    'Medicine': [5, 25],
-    'Nature': [5, 26],
-    'Perception': [5, 27],
-    'Performance': [5, 28],
-    'Persuasion': [5, 29],
-    'Religion': [5, 30],
-    'SleightOfHand': [5, 31],
-    'Stealth': [5, 32],
-    'Survival': [5, 33],
-    'WeaponName1': [9, 17],
-    'WeaponBonus1': [10, 17],
-    'WeaponDamage1': [11, 17],
-    'WeaponName2': [9, 18],
-    'WeaponBonus2': [10, 18],
-    'WeaponDamage2': [11, 18],
-    'WeaponName3': [9, 19],
-    'WeaponBonus3': [10, 19],
-    'WeaponDamage3': [11, 19],
-    'CurrentHP': [9, 9],
-    'HPTemp': [9, 11],
-    'CP': [9, 25],
-    'SP': [9, 26],
-    'EP': [9, 27],
-    'GP': [9, 28],
-    'PP': [9, 29]
-    }
+    'classlevel': [0, 8],
+    'Background': [0, 12],
+    'PlayerName': [0, 16],
+    'race': [0, 4],
+    'alignment': [2, 12],
+    'experiencepoints': [2, 16],
+    'inspiration': [5, 6],
+    'proficiencybonus': [8, 6],
+    'Strengthscore': [6, 1],
+    'Strengthmod': [6, 3],
+    'Dexterityscore': [7, 1],
+    'Dexteritymod': [7, 3],
+    'Constitutionscore': [8, 1],
+    'Constitutionmod': [8, 3],
+    'Intelligencescore': [9, 1],
+    'Intelligencemod': [9, 3],
+    'Wisdomscore': [10, 1],
+    'Wisdommod': [10, 3],
+    'Charismascore': [11, 1],
+    'Charismamod': [11, 3],
+    'Passive': [22, 0],
+    'StrengthSave': [15, 1],
+    'DexteritySave': [16, 1],
+    'ConstitutionSave': [17, 1],
+    'IntelligenceSave': [18, 1],
+    'WisdomSave': [19, 1],
+    'CharismaSave': [20, 1],
+    'AC': [5, 10],
+    'Initiative': [5, 14],
+    'Speed': [5, 18],
+    'MaxHP': [8, 10],
+    'TotalHD': [8, 18],
+    'Acrobatics': [13, 8],
+    'Animal': [14, 8],
+    'Arcana': [15, 8],
+    'Athletics': [16, 8],
+    'Deception': [17, 8],
+    'History': [18, 8],
+    'Insight': [19, 8],
+    'Intimidation': [20, 8],
+    'Investigation': [21, 8],
+    'Medicine': [22, 8],
+    'Nature': [23, 8],
+    'Perception': [24, 8],
+    'Performance': [25, 8],
+    'Persuasion': [26, 8],
+    'Religion': [27, 8],
+    'SleightOfHand': [28, 8],
+    'Stealth': [29, 8],
+    'Survival': [30, 8],
+    'WeaponName1': [14 , 13],
+    'WeaponBonus1': [14, 16],
+    'WeaponDamage1': [14, 19],
+    'WeaponName2': [15, 13],
+    'WeaponBonus2': [15, 16],
+    'WeaponDamage2': [15, 19],
+    'WeaponName3': [16, 13],
+    'WeaponBonus3': [16, 16],
+    'WeaponDamage3': [16, 19],
+    'CurrentHP': [8, 10],
+    'HPTemp': [8, 14],
+    'CP': [24, 14],
+    'SP': [25, 14],
+    'EP': [26, 14],
+    'GP': [27, 14],
+    'PP': [28, 14],
+    'Proficiencies': [25, 0],
+    'Equipment': [23, 17],
+    'Personality': [5, 23],
+    'Ideals': [12, 23],
+    'Bonds': [19, 23],
+    'Flaws': [26, 23],
+    'Features': [33, 23],
+}
+
 
 '''
 UNCOMMENT THIS IF NOT USING GOOGLE SHEETS
@@ -195,11 +204,9 @@ def GenerateHTML():
              'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
     client = gspread.authorize(creds)
-    sheet = client.open("Character Sheet").sheet1
+    sheet = client.open("Character Sheet - Gillian").sheet1
     sheet_list = sheet.get_all_values()
     input_html = InputStats(input_html, sheet_list)
-    input_html = InputProficiencies(input_html, sheet_list)
-    #input_html = CheckBoxes(input_html)
     return input_html
 
 
@@ -207,23 +214,10 @@ def InputStats(html, sheet_list):
     '''Pulls single cell data from Google Sheet and inputs into output html'''
     for key, value in stat_dict.items():
         search_str = "placeholder=\"" + str(key) + "\""
-        x_coord = stat_dict.get(key, 0)[0]
-        y_coord = stat_dict.get(key, 0)[1]
-        replace_str = "placeholder=\"" + sheet_list[y_coord][x_coord] + "\""
+        row = stat_dict.get(key, 0)[0]
+        column = stat_dict.get(key, 0)[1]
+        replace_str = "placeholder=\"" + sheet_list[row][column] + "\""
         html = html.replace(search_str, replace_str)
-    return html
-
-
-def InputProficiencies(html, sheets_list):
-    '''Pulls the range in the designated Proficiencies area of sheet'''
-    replace_str = "placeholder=\""
-    for i in range(31, 41):
-        for j in range(2):
-            if sheets_list[i][j] is not "":
-                replace_str = replace_str + sheets_list[i][j] + ", "
-    replace_str = replace_str[:-2]
-    replace_str = replace_str + "\""
-    html = html.replace("placeholder=\"Proficiencies\"", replace_str)
     return html
 
 
