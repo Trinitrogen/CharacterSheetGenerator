@@ -79,120 +79,31 @@ stat_dict = {
     'Features': [33, 23],
 }
 
-
-'''
-UNCOMMENT THIS IF NOT USING GOOGLE SHEETS
-stat_dict = {
-    'charname': [1, 1],
-    'classlevel': [2, 1],
-    'Background': [7, 1],
-    'PlayerName': ' ',
-    'race': 'Half-Elf',
-    'alignment': 'Chaotic Neutral',
-    'experiencepoints': '90',
-    'inspiration': ' ',
-    'proficiencybonus': '2',
-    'Strengthscore': '11',
-    'Strengthmod': '+0',
-    'Dexterityscore': '17',
-    'Dexteritymod': '+3',
-    'Constitutionscore': '9',
-    'Constitutionmod': '-1',
-    'Wisdomscore': '10',
-    'Wisdommod': '0',
-    'Intelligencescore': '8',
-    'Intelligencemod': '-1',
-    'Charismascore': '13',
-    'Charismamod': '+1',
-    'Passive': '10',
-    'StrengthSave': '0',
-    'DexteritySave': '5',
-    'ConstitutionSave': '-1',
-    'WisdomSave': '0',
-    'IntelligenceSave': '1',
-    'CharismaSave': '1',
-    'AC': '14',
-    'Initiative': '+3',
-    'Speed': '30',
-    'MaxHP': '7',
-    'TotalHD': '1d8',
-    'PersonalityTraits ': 'Always Calm',
-    'Ideals': 'Freedom',
-    'Bonds': 'Guilty',
-    'HD': ' ',
-    'Flaws': 'Innocent',
-    'Acrobatics': '5',
-    'Animal': '0',
-    'Arcana': '-1',
-    'Athletics': '2',
-    'Deception': '5',
-    'History': '-1',
-    'Insight': '0',
-    'Intimidation': '1',
-    'Investigation': '1',
-    'Medicine': '0',
-    'Nature': '-1',
-    'Perception': '2',
-    'Performance': '1',
-    'Persuasion': '3',
-    'Religion': '-1',
-    'SleightOfHand': '5',
-    'Stealth': '7',
-    'Survival': '0',
-    'WeaponName1': 'Short Swd',
-    'WeaponBonus1': '5',
-    'WeaponDamage1': '1d6+3',
-    'WeaponName2': 'Dagger',
-    'WeaponBonus2': '5',
-    'WeaponDamage2': '1d4+3',
-    'WeaponName3': ' ',
-    'WeaponBonus3': ' ',
-    'WeaponDamage3': ' ',
-    'Wpn Name 2': 'Dagger',
-    'Wpn2 AtkBonus ': '5',
-    'Wpn Name 3': ' ',
-    'Wpn3 AtkBonus  ': ' ',
-    'Wpn2 Damage ': ' ',
-    'CurrentHP': ' ',
-    'HPTemp': ' ',
-    'Wpn3 Damage ': ' ',
-    'AttacksSpellcasting': ' ',
-    'CP': ' ',
-    'Proficiencies': 'Common, Elvish, TBD. Light Amour, Thiefs Tools, Playing Cards',
-    'SP': ' ',
-    'EP': ' ',
-    'GP': ' ',
-    'PP': ' ',
-    'Equipment': ' ',
-    'Features and Traits': 'Dark Vision, Fey Ansestery',
-}
-'''
-
 check_dict = {
-    'StrengthSaveCheck': '0',
-    'DexteritySaveCheck': '1',
-    'ConstitutionSaveCheck': '0',
-    'WisdomSaveCheck': '0',
-    'IntelligenceSaveCheck': '1',
-    'CharismaSaveCheck': '0',
-    'AcrobaticsCheck': '1',
-    'AnimalCheck': '0',
-    'ArcanaCheck': '0',
-    'AthleticsCheck': '0',
-    'DeceptionCheck': '1',
-    'HistoryCheck': '0',
-    'InsightCheck': '0',
-    'IntimidationCheck': '0',
-    'InvestigationCheck': '0',
-    'MedicineCheck': '0',
-    'NatureCheck': '0',
-    'PerceptionCheck': '1',
-    'PerformanceCheck': '0',
-    'PersuasionCheck': '1',
-    'ReligionCheck': '0',
-    'SleightOfHandCheck': '1',
-    'StealthCheck': '1',
-    'SurvivalCheck': '0',
+    'StrengthSaveCheck': [15, 3],
+    'DexteritySaveCheck': [16, 3],
+    'ConstitutionSaveCheck': [17, 3],
+    'IntelligenceSaveCheck': [18, 3],
+    'WisdomSaveCheck': [19, 3],
+    'CharismaSaveCheck': [20, 3],
+    'AcrobaticsCheck': [13, 7],
+    'AnimalCheck': [14, 7],
+    'ArcanaCheck': [15, 7],
+    'AthleticsCheck': [16, 7],
+    'DeceptionCheck': [17, 7],
+    'HistoryCheck': [18, 7],
+    'InsightCheck': [19, 7],
+    'IntimidationCheck': [20, 7],
+    'InvestigationCheck': [21, 7],
+    'MedicineCheck': [22, 7],
+    'NatureCheck': [23, 7],
+    'PerceptionCheck': [24, 7],
+    'PerformanceCheck': [25, 7],
+    'PersuasionCheck': [26, 7],
+    'ReligionCheck': [27, 7],
+    'SleightOfHandCheck': [28, 7],
+    'StealthCheck': [29, 7],
+    'SurvivalCheck': [30, 7],
 }
 
 
@@ -207,6 +118,7 @@ def GenerateHTML():
     sheet = client.open("Character Sheet - Gillian").sheet1
     sheet_list = sheet.get_all_values()
     input_html = InputStats(input_html, sheet_list)
+    input_html = CheckBoxes(input_html, sheet_list)
     return input_html
 
 
@@ -221,11 +133,14 @@ def InputStats(html, sheet_list):
     return html
 
 
-def CheckBoxes(html):
+def CheckBoxes(html, sheet_list):
+    '''Flips Checkboxes to check state if character has proficiency'''
     for key, value in check_dict.items():
-        search_str = "placeholder=\"" + str(key) + "\""
-        replace_str = "checked=\"checked\""
-        if value == '1':
+        row = check_dict.get(key, 0)[0]
+        column = check_dict.get(key, 0)[1]
+        if sheet_list[row][column] == 'Yes':
+            search_str = "placeholder=\"" + str(key) + "\""
+            replace_str = "checked=\"checked\""
             html = html.replace(search_str, replace_str)
     return html
 
